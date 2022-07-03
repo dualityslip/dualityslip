@@ -1,0 +1,108 @@
+#include<iostream>
+#include<iomanip> // setw, fetch system date and time
+#include <string>
+
+using namespace std;
+
+time_t current = time(0);
+char* dt = ctime(&current);
+static double kilos,priceoftheothers;
+static string others;
+
+static void calculationANDreceipt(){
+    //base price per kilos = 5 pesos
+    //calculation
+    double milledrice = kilos*5;
+    double OverAllPrice = milledrice+priceoftheothers;
+
+
+//RECEIPT 
+ cout<<"\n\t"; 
+
+ for(int i=0;i<48;i++)
+  cout<<"_";
+
+ cout<<endl; // next line 
+
+
+ cout<<setw(35)<<"\t\tRICEMILL BILL Official Receipt\n";
+ cout<<setw(45)<<"______________________"<<setw(14)<<"\n";
+
+ cout<<setw(48);
+ cout<<"\n\t\tDate and Time: ";
+ cout<<dt;
+ 
+ cout<<"\t"<<setw(48);
+
+ cout<<"\n\tKilos............................."<<kilos<<"kls.";
+ cout<<"\n\t                                 x5(price perkilo)";
+
+ cout<<"\n\n\tAdditional Purchase..............."<<others;
+ cout<<"\n\tprice.............................P"<<priceoftheothers;
+
+ cout<<"\n\n\n\t\t\t             Total Amount: P"<<OverAllPrice;
+
+
+ cout<<"\n\n\t\t\t  >>Thank You!<<";
+
+ cout<<setw(13)<<"\n";
+ cout<<setw(49)<<"\n\n";
+
+ cout<<setw(30)<<"\t* * *"<<setw(24)<<"\n";
+ cout<<setw(48);
+ cout<<"\n\t";
+
+ for(int j=0;j<48;j++)
+cout<<"_";
+}
+
+
+int main()
+{
+    cout << "RICEMILL BILLING SYSTEM" << endl;
+    cout << "\nKilos: "<< endl;
+    cin >> kilos;
+
+    cout << "\nAdditional purchase: "<< endl;
+    string Additional[3] = {"[1]Rubber","[2]Sack","[3]Blue Rope"};
+    
+    int i=0;
+    while (i < 3) {
+      std::cout << Additional[i] << "\n";
+       i++;
+       }
+
+
+    int choice;
+    cin >> choice;
+    switch(choice) {
+    case 1 :
+    cout << "RUBBER"  << endl;
+    if(choice==1){
+    others = "Rubber";
+    priceoftheothers = 50;
+    calculationANDreceipt();
+    }
+    break;
+    case 2 :
+    cout << "SACK"  << endl;
+     if(choice==2){
+    others = "SACK";
+    priceoftheothers = 10;
+    calculationANDreceipt();
+     }
+    break;
+    case 3 :
+    cout << "Blue Rope"  << endl;
+    if(choice==3){
+    others = "Blue Rope";
+    priceoftheothers=35;
+    calculationANDreceipt();
+    }
+    break;
+    default :
+    cout << "Invalid input\n"  << endl;
+    break;
+    }
+    return 0;
+}
